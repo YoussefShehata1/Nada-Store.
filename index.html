@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ندي سعيد | متجر العناية بالشعر والبشرة</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #E8A598;
+            --primary-hover: #D89588;
+            --secondary: #8A9A86;
+            --bg-light: #FAF9F6;
+            --card-bg-light: #FFFFFF;
+            --text-light: #2D3748;
+            --text-muted-light: #718096;
+            --border-light: #EDF2F7;
+            
+            --bg-dark: #121212;
+            --card-bg-dark: #1E1E1E;
+            --text-dark: #F7FAFC;
+            --text-muted-dark: #A0AEC0;
+            --border-dark: #2D3748;
+            
+            --whatsapp-color: #25D366;
+            --danger-color: #E53E3E;
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --transition: all 0.3s ease;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        *, *:before, *:after { box-sizing: inherit; }
+
+        body {
+            --bg: var(--bg-light);
+            --card-bg: var(--card-bg-light);
+            --text: var(--text-light);
+            --text-muted: var(--text-muted-light);
+            --border: var(--border-light);
+            
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Tajawal', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body:not(.light-mode) {
+                --bg: var(--bg-dark);
+                --card-bg: var(--card-bg-dark);
+                --text: var(--text-dark);
+                --text-muted: var(--text-muted-dark);
+                --border: var(--border-dark);
+            }
+        }
+
+        body.dark-mode {
+            --bg: var(--bg-dark);
+            --card-bg: var(--card-bg-dark);
+            --text: var(--text-dark);
+            --text-muted: var(--text-muted-dark);
+            --border: var(--border-dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 12px;
+        }
+
+        /* Announcement Bar */
+        .announcement-bar {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            width: 100%;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            width: 100%;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 65px;
+        }
+
+        .brand-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .brand-logo i {
+            font-size: 20px;
+            color: var(--primary);
+        }
+
+        .brand-title {
+            font-size: 18px;
+            font-weight: 800;
+            margin: 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 13px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--primary);
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(135deg, rgba(232, 165, 152, 0.15) 0%, rgba(138, 154, 134, 0.15) 100%);
+            border-radius: var(--radius-lg);
+            padding: 24px 16px;
+            margin: 15px 0;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .hero h1 { font-size: 22px; font-weight: 800; margin: 0 0 8px 0; }
+        .hero p { font-size: 13px; color: var(--text-muted); margin: 0 0 15px 0; }
+
+        .search-box { position: relative; max-width: 100%; }
+        .search-box input {
+            width: 100%;
+            padding: 10px 40px 10px 15px;
+            border-radius: 25px;
+            border: 1px solid var(--border);
+            background-color: var(--card-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+        }
+        .search-box i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+
+        /* Categories Filter */
+        .categories-wrapper {
+            margin-bottom: 15px;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+        .categories-wrapper::-webkit-scrollbar { display: none; }
+        .categories { display: inline-flex; gap: 8px; }
+
+        .cat-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .cat-btn.active { background-color: var(--primary); color: white; border-color: var(--primary); }
+
+        /* Product Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .card-img-wrapper {
+            width: 100%;
+            padding-top: 100%;
+            position: relative;
+            background-color: var(--bg);
+        }
+
+        .card-img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        .offer-badge {
+            position: absolute; top: 6px; right: 6px;
+            background: var(--danger-color); color: white;
+            padding: 2px 6px; border-radius: 8px; font-size: 10px; font-weight: bold; z-index: 1;
+        }
+
+        .out-of-stock-badge {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.55); color: white;
+            display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; z-index: 2;
+        }
+
+        .card-body { padding: 10px; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-name {
+            font-size: 13px; font-weight: 700; margin: 0 0 4px 0;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 34px;
+        }
+
+        .price-wrapper { display: flex; align-items: baseline; gap: 6px; margin-bottom: 8px; }
+        .product-price { font-size: 14px; font-weight: 800; color: var(--secondary); }
+        .old-price { font-size: 11px; text-decoration: line-through; color: var(--text-muted); }
+
+        .card-actions { display: flex; gap: 5px; margin-top: auto; }
+        .btn-action {
+            flex: 1; padding: 6px; border-radius: 8px; border: none; font-family: inherit; font-size: 11px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;
+        }
+        .btn-cart { background: var(--primary); color: white; }
+        .btn-wa { background: var(--whatsapp-color); color: white; text-decoration: none; }
+
+        /* Floating WhatsApp */
+        .floating-wa {
+            position: fixed; bottom: 15px; left: 15px; background-color: var(--whatsapp-color); color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 99; text-decoration: none;
+        }
+
+        /* Modals */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center; padding: 15px;
+        }
+        .modal.active { display: flex; }
+
+        .modal-card {
+            background: var(--card-bg); border-radius: var(--radius-lg); width: 100%; max-width: 450px; padding: 18px; border: 1px solid var(--border); box-shadow: 0 15px 30px rgba(0,0,0,0.2); position: relative; max-height: 90vh; overflow-y: auto;
+        }
+
+        .close-modal { position: absolute; top: 12px; left: 12px; background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer; }
+
+        .detail-img { width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 12px; }
+        .detail-title { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+        .detail-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; }
+        .detail-usage { background: var(--bg); padding: 10px; border-radius: var(--radius-md); font-size: 12px; margin-bottom: 12px; border-right: 3px solid var(--primary); }
+
+        .cart-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+        .cart-item img { width: 45px; height: 45px; border-radius: 6px; object-fit: cover; }
+        .cart-item-details { flex-grow: 1; }
+        .cart-item-title { font-weight: bold; font-size: 12px; margin-bottom: 2px; }
+        .cart-item-price { font-size: 12px; color: var(--secondary); font-weight: bold; }
+
+        .form-group { margin-bottom: 10px; }
+        .form-group label { display: block; font-weight: 700; font-size: 11px; margin-bottom: 4px; }
+        .form-control {
+            width: 100%; padding: 8px 10px; border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--bg); color: var(--text); font-family: inherit; outline: none; font-size: 13px;
+        }
+
+        .btn-submit {
+            background: var(--whatsapp-color); color: white; border: none; padding: 10px; border-radius: var(--radius-md); font-family: inherit; font-weight: 700; width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px;
+        }
+
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 12px; margin-bottom: 10px; }
+        .faq-q { font-weight: 800; font-size: 13px; margin-bottom: 6px; color: var(--primary); }
+        .faq-a { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin: 0; }
+
+        .social-box { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+        .social-link {
+            display: flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: var(--radius-md); background: var(--bg); border: 1px solid var(--border); color: var(--text); text-decoration: none; font-weight: bold; font-size: 12px;
+        }
+
+        footer { margin-top: auto; background-color: var(--card-bg); border-top: 1px solid var(--border); padding: 15px 0; text-align: center; font-size: 12px; color: var(--text-muted); width: 100%; }
+    </style>
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar" id="announcementBar">
+        ✨ أهلاً بك في متجر ندي سعيد - أجود منتجات العناية الطبيعية بالبشرة والشعر
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="nav-content">
+                <div class="brand-group">
+                    <a href="#" onclick="showSection('home'); return false;" class="brand-logo">
+                        <i class="fa-solid fa-sparkles"></i>
+                        <h1 class="brand-title" id="displayStoreName">ندي سعيد</h1>
+                    </a>
+                    <ul class="nav-links">
+                        <li><a href="#" onclick="showSection('home'); return false;" class="active" id="link-home">الرئيسية</a></li>
+                        <li><a href="#" onclick="showSection('offers'); return false;" id="link-offers">العروض 🔥</a></li>
+                        <li><a href="#" onclick="showSection('about'); return false;" id="link-about">من نحن</a></li>
+                        <li><a href="#" onclick="showSection('contact'); return false;" id="link-contact">تواصل معنا</a></li>
+                        <li><a href="#" onclick="showSection('faq'); return false;" id="link-faq">أسئلة شائعة</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-actions">
+                    <button class="icon-btn" id="cartToggle" title="سلة المشتريات">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span class="badge" id="cartBadge">0</span>
+                    </button>
+                    <button class="icon-btn" id="themeToggle" title="تغيير المظهر">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <button class="icon-btn" id="adminToggle" title="لوحة التحكم">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container" style="padding-top: 10px;">
+        
+        <!-- SECTION: HOME -->
+        <section id="sec-home" class="page-section active">
+            <div class="hero">
+                <h1 id="heroTitle">عناية فائقة تتألق بها ✨</h1>
+                <p id="heroDesc">أفضل منتجات العناية بالشعر والبشرة المختارة بعناية خصيصاً لك</p>
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="ابحث عن منتجك المفضّل...">
+                </div>
+            </div>
+
+            <div class="categories-wrapper">
+                <div class="categories" id="categoryContainer">
+                    <button class="cat-btn active" data-cat="all"><i class="fa-solid fa-border-all"></i> الكل</button>
+                    <button class="cat-btn" data-cat="hair"><i class="fa-solid fa-scissors"></i> شعر</button>
+                    <button class="cat-btn" data-cat="skin"><i class="fa-solid fa-pump-soap"></i> بشرة</button>
+                </div>
+            </div>
+
+            <div class="products-grid" id="productsGrid"></div>
+        </section>
+
+        <!-- SECTION: OFFERS -->
+        <section id="sec-offers" class="page-section">
+            <h2 style="font-size: 18px; margin-bottom: 12px;">🔥 أقوى العروض والخصومات</h2>
+            <div class="products-grid" id="offersGrid"></div>
+        </section>
+
+        <!-- SECTION: ABOUT US -->
+        <section id="sec-about" class="page-section">
+            <div style="background: var(--card-bg); padding: 18px; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+                <h2 style="font-size: 18px; margin-top: 0;">من نحن</h2>
+                <p id="aboutContent" style="line-height: 1.6; color: var(--text-muted); font-size: 13px;"></p>
+            </div>
+        </section>
+
+        <!-- SECTION: CONTACT US -->
+        <section id="sec-contact" class="page-section">
+            <div style="background: var(--card-bg); padding: 18px; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+                <h2 style="font-size: 18px; margin-top: 0;">تواصل معنا</h2>
+                <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 13px;">يسعدنا استقبال استفساراتك وطلباتك عبر الوسائل التالية:</p>
+                <p style="font-size: 13px;"><strong>🕒 مواعيد العمل:</strong> <span id="workingHours"></span></p>
+                <div class="social-box">
+                    <a href="#" id="waContactBtn" target="_blank" class="social-link" style="color: #25D366;"><i class="fa-brands fa-whatsapp"></i> واتساب</a>
+                    <a href="#" id="instaContactBtn" target="_blank" class="social-link" style="color: #E1306C;"><i class="fa-brands fa-instagram"></i> إنستجرام</a>
+                    <a href="#" id="fbContactBtn" target="_blank" class="social-link" style="color: #1877F2;"><i class="fa-brands fa-facebook"></i> فيسبوك</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: FAQ -->
+        <section id="sec-faq" class="page-section">
+            <h2 style="font-size: 18px; margin-bottom: 12px;">الأسئلة الشائعة 💡</h2>
+            <div id="faqContainer"></div>
+        </section>
+
+    </main>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="#" id="floatingWaBtn" target="_blank" class="floating-wa" title="تواصل معنا عبر واتساب">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- PRODUCT DETAIL MODAL -->
+    <div class="modal" id="detailModal">
+        <div class="modal-card">
+            <button class="close-modal" onclick="closeModal('detailModal')">&times;</button>
+            <img src="" id="dImg" class="detail-img">
+            <h3 id="dTitle" class="detail-title"></h3>
+            <div class="price-wrapper" style="margin-bottom: 10px;">
+                <span id="dPrice" class="product-price"></span>
+                <span id="dOldPrice" class="old-price"></span>
+            </div>
+            <p id="dDesc" class="detail-desc"></p>
+            <div class="detail-usage">
+                <strong>💡 طريقة الاستخدام:</strong>
+                <p id="dUsage" style="margin: 4px 0 0 0;"></p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+                <button class="btn-action btn-cart" id="dCartBtn" style="padding: 10px;"><i class="fa-solid fa-cart-plus"></i> أضف للسلة</button>
+                <a href="#" id="dWaBtn" target="_blank" class="btn-action btn-wa" style="padding: 10px;"><i class="fa-brands fa-whatsapp"></i> اطلب الآن</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART MODAL -->
+    <div class="modal" id="cartModal">
+        <div class="modal-card">
+            <button class="close-modal" onclick="closeModal('cartModal')">&times;</button>
+            <h2 style="font-size: 16px; margin-top: 0;">سلة المشتريات 🛍️</h2>
+            <div id="cartItemsContainer"></div>
+            <div id="cartSummarySection" style="display: none; margin-top: 12px;">
+                <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 14px; margin-bottom: 12px;">
+                    <span>المبلغ الإجمالي:</span>
+                    <span id="totalPrice" style="color: var(--secondary);">0 ج.م</span>
+                </div>
+                <button class="btn-submit" onclick="openCheckout()"><i class="fa-brands fa-whatsapp"></i> تأكيد الطلب عبر واتساب</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHECKOUT MODAL -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-card">
+            <button class="close-modal" onclick="closeModal('checkoutModal')">&times;</button>
+            <h2 style="font-size: 16px; margin-top: 0;">بيانات الطلب 📝</h2>
+            <form id="checkoutForm">
+                <div class="form-group"><label>الاسم بالكامل</label><input type="text" id="custName" class="form-control" required placeholder="أدخل اسمك"></div>
+                <div class="form-group"><label>رقم الموبايل</label><input type="tel" id="custPhone" class="form-control" required placeholder="010xxxxxxx"></div>
+                <div class="form-group"><label>العنوان / ملاحظات الإستلام</label><input type="text" id="custAddress" class="form-control" required placeholder="أدخل عنوانك أو تفاصيل الطلب"></div>
+                <button type="submit" class="btn-submit"><i class="fa-brands fa-whatsapp"></i> إرسال الطلب عبر واتساب</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ADMIN MODAL -->
+    <div class="modal" id="adminModal">
+        <div class="modal-card">
+            <button class="close-modal" onclick="closeModal('adminModal')">&times;</button>
+            
+            <div id="loginSection">
+                <h2 style="font-size: 16px; margin-top: 0;">تسجيل دخول الإدارة</h2>
+                <div class="form-group"><label>كلمة المرور</label><input type="password" id="adminPassword" class="form-control" placeholder="أدخل كلمة المرور"></div>
+                <button class="btn-submit" id="loginBtn" style="background: var(--primary);">دخول</button>
+            </div>
+
+            <div id="dashboardSection" style="display: none;">
+                <h2 style="font-size: 16px; margin-top: 0;">لوحة التحكم والإدارة</h2>
+                
+                <div style="display: flex; gap: 6px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                    <button class="cat-btn active" onclick="showAdminTab('pTab')">المنتجات</button>
+                    <button class="cat-btn" onclick="showAdminTab('cTab')">محتوى الصفحات</button>
+                </div>
+
+                <!-- Products Admin -->
+                <div id="pTab" class="admin-tab">
+                    <h3 id="formTitle" style="font-size: 14px;">إضافة / تعديل منتج</h3>
+                    <form id="productForm">
+                        <input type="hidden" id="editProductId">
+                        <input type="hidden" id="pImgBase64"> <!-- تخزين بيانات الصورة المرفوعة -->
+                        <div class="form-group"><label>اسم المنتج</label><input type="text" id="pName" class="form-control" required></div>
+                        <div style="display:flex; gap:8px;">
+                            <div class="form-group" style="flex:1;"><label>السعر (ج.م)</label><input type="number" id="pPrice" class="form-control" required></div>
+                            <div class="form-group" style="flex:1;"><label>السعر القديم</label><input type="number" id="pOldPrice" class="form-control" placeholder="اختياري"></div>
+                        </div>
+                        <div style="display:flex; gap:8px;">
+                            <div class="form-group" style="flex:1;">
+                                <label>القسم</label>
+                                <select id="pCategory" class="form-control">
+                                    <option value="hair">شعر</option>
+                                    <option value="skin">بشرة</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="flex:1;">
+                                <label>عرض خاص؟</label>
+                                <select id="pIsOffer" class="form-control">
+                                    <option value="false">لا</option>
+                                    <option value="true">نعم</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- رفع صورة المنتج كملف بدل الروابط -->
+                        <div class="form-group">
+                            <label>صورة المنتج (اختر ملف من جهازك)</label>
+                            <input type="file" id="pImageFile" accept="image/*" class="form-control" onchange="handleImageUpload(event)">
+                            <div id="imagePreviewContainer" style="margin-top: 8px; text-align: center;"></div>
+                        </div>
+
+                        <div class="form-group"><label>وصف المنتج</label><textarea id="pDesc" class="form-control" rows="2"></textarea></div>
+                        <div class="form-group"><label>طريقة الاستخدام</label><textarea id="pUsage" class="form-control" rows="2"></textarea></div>
+                        <div class="form-group" style="display:flex; gap:6px; align-items:center;">
+                            <input type="checkbox" id="pInStock" checked>
+                            <label for="pInStock" style="margin:0;">متوفر بالمخزون</label>
+                        </div>
+                        <button type="submit" class="btn-submit" style="background: var(--primary);">حفظ المنتج</button>
+                    </form>
+
+                    <h3 style="font-size: 14px; margin-top: 15px;">المنتجات الحالية</h3>
+                    <div id="adminProductsList"></div>
+                </div>
+
+                <!-- Content Admin -->
+                <div id="cTab" class="admin-tab" style="display: none;">
+                    <h3 style="font-size: 14px;">تعديل محتوى الصفحات</h3>
+                    <div class="form-group"><label>الشريط الإعلاني</label><input type="text" id="cfgAnnounce" class="form-control"></div>
+                    <div class="form-group"><label>من نحن</label><textarea id="cfgAbout" class="form-control" rows="3"></textarea></div>
+                    <div class="form-group"><label>مواعيد العمل</label><input type="text" id="cfgHours" class="form-control"></div>
+                    <div class="form-group"><label>إنستجرام</label><input type="text" id="cfgInsta" class="form-control"></div>
+                    <div class="form-group"><label>فيسبوك</label><input type="text" id="cfgFb" class="form-control"></div>
+                    <button class="btn-submit" onclick="savePageContent()" style="background: var(--primary);">حفظ المحتوى</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>جميع الحقوق محفوظة &copy; <span id="footerStoreName">ندي سعيد</span> 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        let config = JSON.parse(localStorage.getItem('nada_config')) || {
+            storeName: "ندي سعيد",
+            whatsapp: "201013672537",
+            announcement: "✨ أهلاً بك في متجر ندي سعيد - أجود منتجات العناية الطبيعية بالبشرة والشعر",
+            about: "متجر 'ندي سعيد' متهم بتوفير أجود أنواع المنتجات الطبيعية والفعالة للعناية بالبشرة والشعر. نهدف دائماً تقديم حلول عناية آمنة وموثوقة لتعزيز صحتك وجمالك اليومي.",
+            workingHours: "يومياً من 10 صباحاً حتى 10 مساءً",
+            insta: "https://instagram.com",
+            fb: "https://facebook.com"
+        };
+
+        const sampleProducts = [
+            { id: "1", name: "سيروم الهيالورونيك أسيد لنضارة البشرة", price: 350, oldPrice: 420, category: "skin", isOffer: true, image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=400", desc: "سيروم مخصص لترطيب البشرة بعمق وتجديد الخلايا.", usage: "توضع قطرات على بشرة نظيفة يومياً صباحاً ومساءً.", inStock: true },
+            { id: "2", name: "زيت معالج ومغذّي للشعر الطبيعي", price: 280, oldPrice: null, category: "hair", isOffer: false, image: "https://images.unsplash.com/photo-1608248597261-e4d09447035a?auto=format&fit=crop&q=80&w=400", desc: "تركيبة زيوت طبيعية 100% لإطالة الشعر وتنعيمه.", usage: "يدلك به فروة الرأس لمدة 5 دقائق ثم يغسل بعد ساعتين.", inStock: true }
+        ];
+
+        const faqs = [
+            { q: "كيف أعرف المنتج المناسب لنوع بشرتي؟", a: "يمكنك التواصل معنا عبر الواتساب وسنقوم بمساعدتك واختيار المنتجات المناسبة لنوع بشرتك وشعرك." },
+            { q: "هل جميع المنتجات طبيعية وآمنة؟", a: "نعم، كافة منتجاتنا خالية من المواد الكيميائية الضارة ومصنعة بعناية لضمان أعلى مستويات الأمان والفاعلية." }
+        ];
+
+        let products = JSON.parse(localStorage.getItem('nada_products')) || sampleProducts;
+        let cart = JSON.parse(localStorage.getItem('nada_cart')) || [];
+        let currentCategory = 'all';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateUI();
+            renderProducts();
+            renderOffers();
+            renderFaqs();
+        });
+
+        function updateUI() {
+            document.getElementById('announcementBar').innerText = config.announcement;
+            document.getElementById('displayStoreName').innerText = config.storeName;
+            document.getElementById('footerStoreName').innerText = config.storeName;
+            document.getElementById('aboutContent').innerText = config.about;
+            document.getElementById('workingHours').innerText = config.workingHours;
+            
+            const waUrl = `https://wa.me/${config.whatsapp}`;
+            document.getElementById('floatingWaBtn').href = waUrl;
+            document.getElementById('waContactBtn').href = waUrl;
+            document.getElementById('instaContactBtn').href = config.insta;
+            document.getElementById('fbContactBtn').href = config.fb;
+
+            document.getElementById('cfgAnnounce').value = config.announcement;
+            document.getElementById('cfgAbout').value = config.about;
+            document.getElementById('cfgHours').value = config.workingHours;
+            document.getElementById('cfgInsta').value = config.insta;
+            document.getElementById('cfgFb').value = config.fb;
+
+            updateCartUI();
+        }
+
+        function showSection(secId) {
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            
+            document.getElementById(`sec-${secId}`).classList.add('active');
+            const link = document.getElementById(`link-${secId}`);
+            if(link) link.classList.add('active');
+        }
+
+        function renderProducts() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const filtered = products.filter(p => {
+                const matchesCat = currentCategory === 'all' || p.category === currentCategory;
+                const matchesSearch = p.name.toLowerCase().includes(query);
+                return matchesCat && matchesSearch;
+            });
+
+            document.getElementById('productsGrid').innerHTML = filtered.map(p => createProductCard(p)).join('');
+        }
+
+        function renderOffers() {
+            const offers = products.filter(p => p.isOffer);
+            const grid = document.getElementById('offersGrid');
+            grid.innerHTML = offers.length === 0 ? '<p style="color: var(--text-muted); font-size: 13px;">لا توجد عروض ترويجية متاحة حالياً.</p>' : offers.map(p => createProductCard(p)).join('');
+        }
+
+        function createProductCard(p) {
+            const waMsg = encodeURIComponent(`أهلاً متجر ${config.storeName}، أرغب في طلب المنتج التالي:\n- ${p.name}\n- السعر: ${p.price} ج.م`);
+            const waLink = `https://wa.me/${config.whatsapp}?text=${waMsg}`;
+
+            return `
+                <div class="product-card" onclick="openDetail('${p.id}')">
+                    <div class="card-img-wrapper">
+                        ${p.oldPrice ? '<span class="offer-badge">خصم</span>' : ''}
+                        <img src="${p.image}" class="card-img" alt="${p.name}">
+                        ${!p.inStock ? '<div class="out-of-stock-badge">نفذت الكمية</div>' : ''}
+                    </div>
+                    <div class="card-body">
+                        <h3 class="product-name">${p.name}</h3>
+                        <div class="price-wrapper">
+                            <span class="product-price">${p.price} ج.م</span>
+                            ${p.oldPrice ? `<span class="old-price">${p.oldPrice} ج.م</span>` : ''}
+                        </div>
+                        <div class="card-actions" onclick="event.stopPropagation();">
+                            ${p.inStock ? `
+                                <button class="btn-action btn-cart" onclick="addToCart('${p.id}')"><i class="fa-solid fa-cart-plus"></i></button>
+                                <a href="${waLink}" target="_blank" class="btn-action btn-wa"><i class="fa-brands fa-whatsapp"></i> اطلب</a>
+                            ` : `<button class="btn-action" disabled style="background: var(--border); color: var(--text-muted);">غير متوفر</button>`}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function openDetail(id) {
+            const p = products.find(item => item.id === id);
+            if(!p) return;
+
+            document.getElementById('dImg').src = p.image;
+            document.getElementById('dTitle').innerText = p.name;
+            document.getElementById('dPrice').innerText = p.price + ' ج.م';
+            document.getElementById('dOldPrice').innerText = p.oldPrice ? (p.oldPrice + ' ج.م') : '';
+            document.getElementById('dDesc').innerText = p.desc || 'لا يوجد وصف إضافي.';
+            document.getElementById('dUsage').innerText = p.usage || 'استخدم المنتج بشكل يومي للحصول على أفضل نتائج.';
+
+            const waMsg = encodeURIComponent(`أهلاً متجر ${config.storeName}، أود الاستفسار/طلب:\n- ${p.name}`);
+            document.getElementById('dWaBtn').href = `https://wa.me/${config.whatsapp}?text=${waMsg}`;
+            document.getElementById('dCartBtn').onclick = () => { addToCart(p.id); closeModal('detailModal'); };
+
+            document.getElementById('detailModal').classList.add('active');
+        }
+
+        function renderFaqs() {
+            document.getElementById('faqContainer').innerHTML = faqs.map(f => `
+                <div class="faq-item">
+                    <div class="faq-q">س: ${f.q}</div>
+                    <p class="faq-a">ج: ${f.a}</p>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const exist = cart.find(item => item.id === id);
+            if (exist) { exist.qty += 1; } 
+            else { cart.push({ ...product, qty: 1 }); }
+            saveCart();
+            alert('تم إضافة المنتج إلى السلة بنجاح 👍');
+        }
+
+        function saveCart() {
+            localStorage.setItem('nada_cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cartBadge').innerText = totalQty;
+
+            const container = document.getElementById('cartItemsContainer');
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="text-align:center; padding: 15px; color: var(--text-muted); font-size: 13px;">السلة فارغة حالياً 🛒</p>';
+                document.getElementById('cartSummarySection').style.display = 'none';
+                return;
+            }
+
+            document.getElementById('cartSummarySection').style.display = 'block';
+            container.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}">
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">${item.price} ج.م</div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:5px;">
+                        <button onclick="changeQty('${item.id}', -1)" style="padding: 2px 6px;">-</button>
+                        <span style="font-size: 12px;">${item.qty}</span>
+                        <button onclick="changeQty('${item.id}', 1)" style="padding: 2px 6px;">+</button>
+                    </div>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('totalPrice').innerText = total + ' ج.م';
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) { cart = cart.filter(i => i.id !== id); }
+            saveCart();
+        }
+
+        function openCheckout() {
+            closeModal('cartModal');
+            document.getElementById('checkoutModal').classList.add('active');
+        }
+
+        document.getElementById('checkoutForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const address = document.getElementById('custAddress').value;
+
+            let itemsList = cart.map(i => `• ${i.name} (العدد: ${i.qty}) - ${i.price * i.qty} ج.م`).join('\n');
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            const msg = `أهلاً متجر ${config.storeName}، أود تأكيد الطلب التالي:\n\n` +
+                        `👤 *بيانات العميل:*\n- الاسم: ${name}\n- الهاتف: ${phone}\n- التفاصيل/العنوان: ${address}\n\n` +
+                        `🛍️ *المنتجات المطلوبة:*\n${itemsList}\n\n` +
+                        `💵 *إجمالي السعر:* ${total} ج.م`;
+
+            window.open(`https://wa.me/${config.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
+            cart = [];
+            saveCart();
+            closeModal('checkoutModal');
+        });
+
+        document.getElementById('categoryContainer').addEventListener('click', (e) => {
+            const btn = e.target.closest('.cat-btn');
+            if (!btn) return;
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCategory = btn.dataset.cat;
+            renderProducts();
+        });
+
+        document.getElementById('searchInput').addEventListener('input', renderProducts);
+
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+        document.getElementById('cartToggle').onclick = () => document.getElementById('cartModal').classList.add('active');
+        document.getElementById('adminToggle').onclick = () => document.getElementById('adminModal').classList.add('active');
+
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        document.getElementById('loginBtn').onclick = () => {
+            if(document.getElementById('adminPassword').value === '123456') {
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('dashboardSection').style.display = 'block';
+                renderAdminList();
+            } else { alert('كلمة المرور غير صحيحة'); }
+        };
+
+        function showAdminTab(tabId) {
+            document.querySelectorAll('.admin-tab').forEach(t => t.style.display = 'none');
+            document.getElementById(tabId).style.display = 'block';
+        }
+
+        // التعامل مع رفع ملف الصورة وتحويله إلى كود مخزن داخلياً
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const base64String = e.target.result;
+                    document.getElementById('pImgBase64').value = base64String;
+                    document.getElementById('imagePreviewContainer').innerHTML = `<img src="${base64String}" style="width: 70px; height: 70px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function savePageContent() {
+            config.announcement = document.getElementById('cfgAnnounce').value;
+            config.about = document.getElementById('cfgAbout').value;
+            config.workingHours = document.getElementById('cfgHours').value;
+            config.insta = document.getElementById('cfgInsta').value;
+            config.fb = document.getElementById('cfgFb').value;
+
+            localStorage.setItem('nada_config', JSON.stringify(config));
+            updateUI();
+            alert('تم حفظ محتوى الصفحات بنجاح!');
+        }
+
+        document.getElementById('productForm').onsubmit = (e) => {
+            e.preventDefault();
+            const editId = document.getElementById('editProductId').value;
+            const name = document.getElementById('pName').value;
+            const price = parseFloat(document.getElementById('pPrice').value);
+            const oldPrice = document.getElementById('pOldPrice').value ? parseFloat(document.getElementById('pOldPrice').value) : null;
+            const category = document.getElementById('pCategory').value;
+            const isOffer = document.getElementById('pIsOffer').value === 'true';
+            
+            // جلب الصورة المرفوعة أو الحفاظ على القديمة عند التعديل
+            let image = document.getElementById('pImgBase64').value;
+            if (!image && editId) {
+                const existingProd = products.find(p => p.id === editId);
+                image = existingProd ? existingProd.image : '';
+            }
+            if (!image) {
+                image = 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=400';
+            }
+
+            const desc = document.getElementById('pDesc').value;
+            const usage = document.getElementById('pUsage').value;
+            const inStock = document.getElementById('pInStock').checked;
+
+            if(editId) {
+                const idx = products.findIndex(p => p.id === editId);
+                if(idx !== -1) products[idx] = { id: editId, name, price, oldPrice, category, isOffer, image, desc, usage, inStock };
+            } else {
+                products.push({ id: Date.now().toString(), name, price, oldPrice, category, isOffer, image, desc, usage, inStock });
+            }
+
+            localStorage.setItem('nada_products', JSON.stringify(products));
+            document.getElementById('productForm').reset();
+            document.getElementById('editProductId').value = '';
+            document.getElementById('pImgBase64').value = '';
+            document.getElementById('imagePreviewContainer').innerHTML = '';
+            renderAdminList();
+            renderProducts();
+            renderOffers();
+            alert('تم حفظ المنتج بنجاح!');
+        };
+
+        function renderAdminList() {
+            document.getElementById('adminProductsList').innerHTML = products.map(p => `
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border); font-size: 12px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <img src="${p.image}" style="width: 30px; height: 30px; object-fit: cover; border-radius: 4px;">
+                        <strong>${p.name}</strong> - ${p.price} ج.م
+                    </div>
+                    <div>
+                        <button onclick="editProduct('${p.id}')" style="padding: 2px 6px;">تعديل</button>
+                        <button onclick="deleteProduct('${p.id}')" style="color:var(--danger-color); padding: 2px 6px;">حذف</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        window.editProduct = (id) => {
+            const p = products.find(i => i.id === id);
+            if(!p) return;
+            document.getElementById('editProductId').value = p.id;
+            document.getElementById('pName').value = p.name;
+            document.getElementById('pPrice').value = p.price;
+            document.getElementById('pOldPrice').value = p.oldPrice || '';
+            document.getElementById('pCategory').value = p.category;
+            document.getElementById('pIsOffer').value = p.isOffer ? 'true' : 'false';
+            document.getElementById('pImgBase64').value = p.image;
+            document.getElementById('imagePreviewContainer').innerHTML = `<img src="${p.image}" style="width: 70px; height: 70px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">`;
+            document.getElementById('pDesc').value = p.desc || '';
+            document.getElementById('pUsage').value = p.usage || '';
+            document.getElementById('pInStock').checked = p.inStock;
+        };
+
+        window.deleteProduct = (id) => {
+            if(confirm('هل تريد حذف هذا المنتج؟')) {
+                products = products.filter(i => i.id !== id);
+                localStorage.setItem('nada_products', JSON.stringify(products));
+                renderAdminList();
+                renderProducts();
+                renderOffers();
+            }
+        };
+    </script>
+</body>
+</html>
