@@ -112,7 +112,6 @@
             gap: 15px;
         }
 
-        /* Hamburger Menu Toggle (الـ 3 شرط) */
         .menu-toggle-btn {
             background: none;
             border: none;
@@ -152,7 +151,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Sidebar Menu (قائمة الـ 3 شرط الجانبية) */
+        /* Sidebar Menu */
         .sidebar {
             position: fixed;
             top: 0;
@@ -262,9 +261,12 @@
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* Page Views */
-        .page-section { display: none; opacity: 0; transition: opacity 0.4s ease; }
-        .page-section.active { display: block; opacity: 1; }
+        /* Sections spacing */
+        .page-section {
+            padding: 30px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .page-section:last-of-type { border-bottom: none; }
 
         /* HERO HOME ANIMATION */
         .home-hero {
@@ -272,7 +274,7 @@
             border-radius: var(--radius-lg);
             overflow: hidden;
             margin: 20px 0;
-            padding: 60px 20px;
+            padding: 40px 20px;
             text-align: center;
             background: linear-gradient(135deg, rgba(224, 169, 149, 0.2) 0%, rgba(212, 163, 115, 0.15) 100%);
             border: 1px solid var(--border);
@@ -291,7 +293,7 @@
             object-fit: cover;
             border: 3px solid var(--rose-gold);
             box-shadow: 0 10px 30px rgba(224, 169, 149, 0.3);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             animation: floatLogo 3s ease-in-out infinite;
         }
 
@@ -301,17 +303,17 @@
         }
 
         .home-hero h1 {
-            font-size: 32px;
+            font-size: 30px;
             font-weight: 800;
-            margin: 0 0 10px 0;
+            margin: 0 0 8px 0;
             font-family: serif;
             letter-spacing: 1px;
         }
 
         .home-hero p {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--text-muted);
-            margin: 0 0 25px 0;
+            margin: 0 0 20px 0;
             font-style: italic;
         }
 
@@ -319,16 +321,55 @@
             background: linear-gradient(135deg, var(--rose-gold), var(--primary));
             color: white;
             border: none;
-            padding: 12px 32px;
+            padding: 10px 28px;
             border-radius: 30px;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 14px;
             cursor: pointer;
             box-shadow: 0 5px 20px rgba(224, 169, 149, 0.4);
             transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
         }
 
         .explore-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(224, 169, 149, 0.6); }
+
+        /* Rectangular Banner Box (الصورة داخل مستطيل بخلفية ملونة فخمة) */
+        .rectangular-banner-box {
+            background: linear-gradient(135deg, rgba(224, 169, 149, 0.18), rgba(212, 163, 115, 0.12));
+            border: 2px solid var(--rose-gold);
+            border-radius: var(--radius-lg);
+            padding: 25px 20px;
+            margin: 25px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 12px 35px rgba(224, 169, 149, 0.2);
+        }
+
+        .rectangular-banner-box img {
+            width: 100%;
+            max-width: 420px;
+            height: auto;
+            border-radius: var(--radius-md);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            margin-bottom: 15px;
+            border: 2px solid rgba(224, 169, 149, 0.5);
+        }
+
+        .rectangular-banner-box h3 {
+            font-size: 20px;
+            font-family: serif;
+            color: var(--rose-gold);
+            margin: 0 0 8px 0;
+        }
+
+        .rectangular-banner-box p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 0;
+        }
 
         /* Categories Filter */
         .categories-wrapper {
@@ -363,7 +404,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
 
         @media (min-width: 768px) {
@@ -431,7 +472,7 @@
         .btn-cart:hover { background: var(--primary-hover); }
         .btn-wa { background: var(--whatsapp-color); color: white; text-decoration: none; }
 
-        /* --- About Us Style (مستوحى من الصورة الثانية) --- */
+        /* About Us Cards */
         .about-cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -516,12 +557,11 @@
         <div class="container">
             <div class="nav-content">
                 <div class="brand-group">
-                    <!-- زر الهامبرغر (الـ 3 شرط) لفتح القائمة الجانبية -->
                     <button class="menu-toggle-btn" id="menuToggleBtn" title="القائمة">
                         <i class="fa-solid fa-bars"></i>
                     </button>
 
-                    <a href="#" onclick="showSection('home'); return false;" class="brand-logo">
+                    <a href="#sec-home" class="brand-logo">
                         <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&q=80&w=200" alt="Roselle Logo" id="brandLogoImg">
                         <h1 class="brand-title">Roselle</h1>
                     </a>
@@ -543,7 +583,7 @@
         </div>
     </header>
 
-    <!-- Sidebar Menu (القائمة الجانبية للـ 3 شرط) -->
+    <!-- Sidebar Menu -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <div class="sidebar" id="sidebarMenu">
         <div class="sidebar-header">
@@ -551,33 +591,39 @@
             <button class="close-sidebar" id="closeSidebar">&times;</button>
         </div>
         <ul class="sidebar-links">
-            <li><a href="#" onclick="showSection('home'); closeSidebarMenu(); return false;" id="link-home" class="active"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
-            <li><a href="#" onclick="showSection('shop'); closeSidebarMenu(); return false;" id="link-shop"><i class="fa-solid fa-store"></i> المتجر والأقسام</a></li>
-            <li><a href="#" onclick="showSection('offers'); closeSidebarMenu(); return false;" id="link-offers"><i class="fa-solid fa-fire"></i> العروض الحصرية</a></li>
-            <li><a href="#" onclick="showSection('about'); closeSidebarMenu(); return false;" id="link-about"><i class="fa-solid fa-heart"></i> من نحن</a></li>
-            <li><a href="#" onclick="showSection('contact'); closeSidebarMenu(); return false;" id="link-contact"><i class="fa-solid fa-headset"></i> تواصل معنا</a></li>
-            <li><a href="#" onclick="showSection('faq'); closeSidebarMenu(); return false;" id="link-faq"><i class="fa-solid fa-circle-question"></i> الأسئلة الشائعة</a></li>
+            <li><a href="#sec-home" onclick="closeSidebarMenu()"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
+            <li><a href="#sec-shop" onclick="closeSidebarMenu()"><i class="fa-solid fa-store"></i> المتجر والأقسام</a></li>
+            <li><a href="#sec-offers" onclick="closeSidebarMenu()"><i class="fa-solid fa-fire"></i> العروض الحصرية</a></li>
+            <li><a href="#sec-about" onclick="closeSidebarMenu()"><i class="fa-solid fa-heart"></i> من نحن</a></li>
+            <li><a href="#sec-contact" onclick="closeSidebarMenu()"><i class="fa-solid fa-headset"></i> تواصل معنا</a></li>
+            <li><a href="#sec-faq" onclick="closeSidebarMenu()"><i class="fa-solid fa-circle-question"></i> الأسئلة الشائعة</a></li>
         </ul>
     </div>
 
-    <!-- Main Container -->
-    <main class="container" style="padding-top: 15px;">
+    <!-- Main Container (All sections in one scrollable page) -->
+    <main class="container">
         
-        <!-- SECTION 1: HOME (الصفحة الرئيسية الفخمة) -->
-        <section id="sec-home" class="page-section active">
+        <!-- SECTION 1: HOME -->
+        <section id="sec-home" class="page-section">
             <div class="home-hero">
                 <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&q=80&w=300" class="home-logo-img" alt="Roselle">
                 <h1>Roselle</h1>
                 <p>More than just beauty ✨</p>
-                <button class="explore-btn" onclick="showSection('shop')">تصفح المنتجات الآن 🛍️</button>
+                <a href="#sec-shop" class="explore-btn">تصفح المنتجات الآن 🛍️</a>
             </div>
 
-            <!-- عرض سريع لأقوى المنتجات في الرئيسية -->
+            <!-- Rectangular Banner Box (صورة الواجهة داخل مستطيل بخلفية ملونة فخمة) -->
+            <div class="rectangular-banner-box">
+                <img src="./img.jpeg" alt="Roselle Special Banner">
+                <h3>Roselle Signature Experience</h3>
+                <p>اكتشفي تشكيلتنا الفريدة والمصممة خصيصاً لتمنحكِ إطلالة ساحرة تعكس جمالكِ الطبيعي ✨</p>
+            </div>
+
             <h2 style="font-size: 20px; margin-bottom: 15px; border-right: 4px solid var(--rose-gold); padding-right: 10px;">✨ مختارات مميزة لكِ</h2>
             <div class="products-grid" id="homeFeaturedGrid"></div>
         </section>
 
-        <!-- SECTION 2: SHOP & CATEGORIES (المتجر الكامل) -->
+        <!-- SECTION 2: SHOP & CATEGORIES -->
         <section id="sec-shop" class="page-section">
             <div style="text-align: center; margin-bottom: 20px;">
                 <h2 style="font-size: 24px; font-family: serif; margin-bottom: 5px;">أقسام المتجر</h2>
@@ -609,7 +655,7 @@
             <div class="products-grid" id="offersGrid"></div>
         </section>
 
-        <!-- SECTION 4: ABOUT US (مستوحى من الصورة الثانية ببطاقات Our Vision / Our Mission) -->
+        <!-- SECTION 4: ABOUT US -->
         <section id="sec-about" class="page-section">
             <div style="text-align: center; margin-bottom: 25px;">
                 <h2 style="font-size: 26px; font-family: serif; color: var(--rose-gold);">من نحن</h2>
@@ -888,17 +934,6 @@
             }
         });
 
-        // Navigation Controller
-        function showSection(secId) {
-            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
-            document.querySelectorAll('.sidebar-links a').forEach(a => a.classList.remove('active'));
-            
-            document.getElementById(`sec-${secId}`).classList.add('active');
-            const link = document.getElementById(`link-${secId}`);
-            if(link) link.classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
         function renderProducts() {
             const query = document.getElementById('searchInput').value.trim().toLowerCase();
             const filtered = products.filter(p => {
@@ -922,7 +957,7 @@
         }
 
         function createProductCard(p) {
-            const waMsg = encodeURIComponent(`أهلاً متجر Roselle، أرغب في طلب المنتج التالي:\n- ${p.name}\n- السعر: ${p.price} ج.م`);
+            const waMsg = encodeURIComponent(`أهلاً متجر Roselle، أرغب في طلب المنتج التالي:\n${p.name}\nالسعر: ${p.price} ج.م`);
             const waLink = `https://wa.me/${config.whatsapp}?text=${waMsg}`;
 
             return `
@@ -960,7 +995,7 @@
             document.getElementById('dDesc').innerText = p.desc || 'لا يوجد وصف إضافي.';
             document.getElementById('dUsage').innerText = p.usage || 'استخدم المنتج بشكل دوري للحصول على أفضل نتائج.';
 
-            const waMsg = encodeURIComponent(`أهلاً متجر Roselle، أود الاستفسار/طلب:\n- ${p.name}`);
+            const waMsg = encodeURIComponent(`أهلاً متجر Roselle، أود الاستفسار/طلب:\n${p.name}`);
             document.getElementById('dWaBtn').href = `https://wa.me/${config.whatsapp}?text=${waMsg}`;
             document.getElementById('dCartBtn').onclick = () => { addToCart(p.id); closeModal('detailModal'); };
 
@@ -1040,11 +1075,11 @@
             const phone = document.getElementById('custPhone').value;
             const address = document.getElementById('custAddress').value;
 
-            let itemsList = cart.map(i => `• ${i.name} (العدد: ${i.qty}) - ${i.price * i.qty} ج.م`).join('\n');
+            let itemsList = cart.map(i => `${i.name} (العدد: ${i.qty}) - ${i.price * i.qty} ج.م`).join('\n');
             const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
             const msg = `أهلاً متجر Roselle، أود تأكيد الطلب التالي:\n\n` +
-                        `👤 *بيانات العميل:*\n- الاسم: ${name}\n- الهاتف: ${phone}\n- التفاصيل/العنوان: ${address}\n\n` +
+                        `👤 *بيانات العميل:*\nالاسم: ${name}\nالهاتف: ${phone}\nالتفاصيل/العنوان: ${address}\n\n` +
                         `🛍️ *المنتجات المطلوبة:*\n${itemsList}\n\n` +
                         `💵 *إجمالي السعر:* ${total} ج.م`;
 
